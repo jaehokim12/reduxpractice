@@ -1,47 +1,47 @@
 const { createStore } = require('redux');
 
+//reducer
 const reducer = (prevState, action) => {
-  //새로운 state를 만든다
   switch (action.type) {
-    case 'CHANGE_COMP_A':
+    case 'CHANGE_COMPA':
       return {
         ...prevState,
         compA: action.data,
       };
-    case 'CHANGE_COMP_B':
+    case 'CHANGE_COMPB':
       return {
         ...prevState,
         compB: action.data,
       };
-    case 'CHANGE_COMP_C':
+    case 'CHANGE_COMPC':
       return {
         ...prevState,
         compC: action.data,
       };
     default:
-      return prevState; //
+      return prevState;
   }
 };
-//store
-
 const initialState = {
   compA: 'a',
-  compB: 12,
+  compB: 1,
   compC: null,
 };
 const store = createStore(reducer, initialState);
-store.subscribe(
-  (listener = () => {
-    console.log('changed');
-  })
-);
-console.log('1st', store.getState());
 //action
+
 const changeCompA = data => {
   return {
-    type: 'CHANGE_COMP_A',
+    type: 'CHANGE_COMPA',
     data,
   };
 };
+store.subscribe(
+  (listner = () => {
+    console.log('change');
+  })
+);
+console.log('1st', store.getState());
+
 store.dispatch(changeCompA('c'));
-console.log('2nd', store.getState());
+console.log('2st', store.getState());
